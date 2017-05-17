@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewPlaylist from '../components/NewPlaylist';
+import axios from 'axios';
 
 export default class NewPlaylistContainer extends Component {
   constructor (props) {
@@ -16,7 +17,6 @@ export default class NewPlaylistContainer extends Component {
 
   handleChange (event) {
     const value = event.target.value;
-    console.log("value length", value.length)
     if (value.length < 17 && value.length >= 1) {
       this.setState({
         inputValue: value,
@@ -41,7 +41,10 @@ export default class NewPlaylistContainer extends Component {
   }
 
   handleSubmit (event) {
-    console.log(this.state.inputValue);
+    const name = this.state.inputValue;
+    axios.post('/api/playlists/', { name })
+    .then( () => console.log("I MADE A PLAYLIST!"))
+    .catch(console.log);
     this.setState({inputValue: ''});
   }
 
