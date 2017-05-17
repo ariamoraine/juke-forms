@@ -12,6 +12,8 @@ const NewPlaylist = function (props) {
               <input className="form-control" type="text" value={props.value} />
             </div>
           </div>
+          {props.showLongInputWarning ? <div className="alert alert-warning">That name is too long!</div> : null}
+          {props.showShortInputWarning ? <div className="alert alert-warning">That name is too short!</div> : null}
           <div className="form-group">
             <div className="col-xs-10 col-xs-offset-2">
               <button disabled={props.disabled} type="submit" className="btn btn-success">Create Playlist</button>

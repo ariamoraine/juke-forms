@@ -6,7 +6,9 @@ export default class NewPlaylistContainer extends Component {
     super(props);
     this.state = {
       inputValue: '',
-      disabled: true
+      disabled: true,
+      showLongInputWarning: false,
+      showShortInputWarning: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,17 +16,27 @@ export default class NewPlaylistContainer extends Component {
 
   handleChange (event) {
     const value = event.target.value;
-    if (value.length > 0 && value.length < 17) {
-      console.log()
+    console.log("value length", value.length)
+    if (value.length < 17 && value.length >= 1) {
       this.setState({
         inputValue: value,
-        disabled: false
+        disabled: false,
+        showLongInputWarning: false,
+        showShortInputWarning: false
+      });
+    } else if (value.length === 0) {
+      console.log("INSIDE ELSE IF", value.length)
+      this.setState({
+        inputValue: value,
+        disabled: true,
+        showShortInputWarning: true
       });
     } else {
       this.setState({
         inputValue: value,
-        disabled: true
-      })
+        disabled: true,
+        showLongInputWarning: true
+      });
     }
   }
 
@@ -39,7 +51,10 @@ export default class NewPlaylistContainer extends Component {
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         value={this.state.inputValue}
-        disabled={this.state.disabled} />
-    )
+        disabled={this.state.disabled}
+        showLongInputWarning={this.state.showLongInputWarning}
+        showShortInputWarning={this.state.showShortInputWarning}
+        />
+    );
   }
 }
