@@ -5,6 +5,7 @@ import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
 //containers
 import AppContainer from './containers/AppContainer';
 import FilterableArtistsContainer from './containers/FilterableArtistsContainer';
+import NewPlaylistContainer from './containers/NewPlaylistContainer';
 //components
 import Albums from './components/Albums';
 import Album from './components/Album';
@@ -14,7 +15,7 @@ import Songs from './components/Songs';
 
 ReactDOM.render(
   <Router history={hashHistory}>
-    <Route path='/' component={AppContainer} foo={'foo'}>
+    <Route path="/" component={AppContainer} foo={'foo'}>
       <Route path="/albums" component={Albums} />
       <Route path="/albums/:albumId" component={Album} />
       <Route path="/artists" component={FilterableArtistsContainer} />
@@ -22,7 +23,8 @@ ReactDOM.render(
         <Route path="/artists/:artistId/albums" component={Albums} />
         <Route path="/artists/:artistId/songs" component={Songs} />
       </Route>
-      <IndexRedirect to='/albums' />
+      <Route path="/newplaylist" component={NewPlaylistContainer} />
+      <IndexRedirect to="/albums" />
     </Route>
   </Router>,
   document.getElementById('app')
