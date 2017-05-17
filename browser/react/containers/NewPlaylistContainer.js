@@ -5,7 +5,8 @@ export default class NewPlaylistContainer extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      inputValue: ''
+      inputValue: '',
+      disabled: true
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,21 +14,32 @@ export default class NewPlaylistContainer extends Component {
 
   handleChange (event) {
     const value = event.target.value;
-    console.log("INSIDE HANDLE CHANGE VALUE", value);
-    this.setState({
-      inputValue: value
-    });
+    if (value.length > 0 && value.length < 17) {
+      console.log()
+      this.setState({
+        inputValue: value,
+        disabled: false
+      });
+    } else {
+      this.setState({
+        inputValue: value,
+        disabled: true
+      })
+    }
   }
 
   handleSubmit (event) {
-    console.log("INside handle SUBMIT")
-    const subValue = event.target.value;
-    console.log(this.state.inputValue, subValue);
+    console.log(this.state.inputValue);
+    this.setState({inputValue: ''});
   }
 
   render () {
     return (
-      <NewPlaylist handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
+      <NewPlaylist
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+        value={this.state.inputValue}
+        disabled={this.state.disabled} />
     )
   }
 }
