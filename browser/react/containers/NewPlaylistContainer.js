@@ -41,10 +41,12 @@ export default class NewPlaylistContainer extends Component {
   }
 
   handleSubmit (event) {
-    const name = this.state.inputValue;
-    axios.post('/api/playlists/', { name })
-    .then( () => console.log("I MADE A PLAYLIST!"))
-    .catch(console.log);
+    // const name = this.state.inputValue;
+    // axios.post('/api/playlists/', { name })
+    // .then( () => console.log("I MADE A PLAYLIST!"))
+    // .catch(console.log);
+    event.preventDefault();
+    this.props.addPlaylist(this.state.inputValue);
     this.setState({inputValue: ''});
   }
 
