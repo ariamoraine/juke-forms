@@ -4,6 +4,8 @@ import axios from 'axios';
 import initialState from '../initialState';
 import AUDIO from '../audio';
 
+import {hashHistory} from 'react-router';
+
 import Albums from '../components/Albums.js';
 import Album from '../components/Album';
 import Sidebar from '../components/Sidebar';
@@ -146,6 +148,9 @@ export default class AppContainer extends Component {
       this.setState({
         playlists: [...this.state.playlists, playlist]
       });
+      const path = `playlist/${playlist.id}`;
+      console.log("IM A PATH ~~~~~~~~~~~~~", path)
+      hashHistory.push(path);
     })
     .catch(console.trace);
   }
