@@ -25,7 +25,6 @@ export default class NewPlaylistContainer extends Component {
         showShortInputWarning: false
       });
     } else if (value.length === 0) {
-      console.log("INSIDE ELSE IF", value.length)
       this.setState({
         inputValue: value,
         disabled: true,
@@ -41,10 +40,6 @@ export default class NewPlaylistContainer extends Component {
   }
 
   handleSubmit (event) {
-    // const name = this.state.inputValue;
-    // axios.post('/api/playlists/', { name })
-    // .then( () => console.log("I MADE A PLAYLIST!"))
-    // .catch(console.log);
     event.preventDefault();
     this.props.addPlaylist(this.state.inputValue);
     this.setState({inputValue: ''});
